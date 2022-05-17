@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <!-- these two scripts import the necessary react modules -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>   
+    <!-- babel is necessary to compile the JSX (`readable html`) into JS to feed to React. -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script type="text/jsx">
+        const app = document.getElementById('app');
+
+        const quotes = ['I am a jelly donut', 'What is any ocean but an multitude of drops?', "I would rather have questions that can't be answered than answers that can't be questioned."]
+        const authors = ['JFK', 'David Mitchell', 'Richard feynman']
+
+        function Quote({ title }) {
+            return <h1>{title ? title : 'Anonymous quote'}</h1>
+          }
+          
+        function Author({ text }) {
+            return <p>{text ? text: 'Unknown'}</p>
+        }
+
+        function handleClick() {
+            alert("you clicked a button");
+        }
+
+        function Homepage() {
+            return (
+                <div>
+                    <Quote title="What is any ocean but a multitude of drops?"/>  
+                    <Author text="David Mitchell"/> 
+
+                    <Quote title="That's rough buddy" />
+                    <Author text="Zuko" /> 
+
+                    <Quote /> 
+                    <Author /> 
+
+                    <ul>
+                        {quotes.map(quote => (
+                            <li key={quote}>
+                                {quote}
+                            </li>    
+                        ))}
+                    </ul>
+
+                    <button onClick={handleClick}>Button</button>
+                </div>
+            )
+        }
+        ReactDOM.render(<Homepage />, app)
+    </script>
+</body>
+</html>
